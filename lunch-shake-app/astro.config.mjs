@@ -8,6 +8,6 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   site: 'https://BenjaminConklin.github.io',
-  base: '',
+  base: '/FortifyPowder',
   // this is the path in the url to go to to see the page
 });
