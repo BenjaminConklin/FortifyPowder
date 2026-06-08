@@ -10,18 +10,18 @@ import NutritionFactsLabel from "../assets/NutritionFactsLabel.astro";
 <Layout title="Lunch Shake Calculator">
   <main class="flex flex-col justify-center min-h-screen">
     <div class="bg-emerald-600">
-      <h1 class="text-3xl font-bold text-center text-amber-500 mb-8">
+      <h1 class="text-3xl font-bold text-center text-amber-500 mb-8 h-2">
         LunchShake Calculator
       </h1>
     </div>
     <div class="w-full flex flex-row justify-center">
       <div
-        class="flex flex-row gap-4 justify-center rounded-2xl drop-shadow-2 bg-gray-200 p-3 min-w-fit max-w-3"
+        class="flex md:flex-row flex-col gap-4 justify-center rounded-2xl drop-shadow-2 bg-gray-200 p-3 min-w-fit max-w-3"
       >
         <div class="pad-3 margin-2 min-w-fit">
           <div class="bg-indigo-50 p-4 rounded-lg">
             <h2 class="text-lg font-semibold text-indigo-900 mb-2">
-              1. Total Serving Size
+              Total Serving Size
             </h2>
             <label class="block text-sm font-medium text-gray-700 mb-1">
               Target Weight: <span
@@ -40,9 +40,11 @@ import NutritionFactsLabel from "../assets/NutritionFactsLabel.astro";
             />
           </div>
 
-          <div class="space-y-4 max-h-125 overflow-y-auto pr-2">
+          <div
+            class="space-y-4 md:max-h-125 md:inset-shadow-sm/40 md:p-2 rounded-xl overflow-y-auto pr-2"
+          >
             <h2 class="text-lg font-semibold text-gray-700 border-b pb-2">
-              2. Recipe Ratios
+              Recipe Selector
             </h2>
 
             {
@@ -78,7 +80,11 @@ import NutritionFactsLabel from "../assets/NutritionFactsLabel.astro";
       </div>
     </div>
 
-    <footer class="sticky">made by Benjamin</footer>
+    <footer class="sticky flex flex-row justify-center">
+      <div class="bg-gray-100 w-fit px-3 h-5 rounded-full ring-2 ring-blue-400">
+        made by Benjamin
+      </div>
+    </footer>
   </main>
 
   <script is:inline define:vars={{ ingredientsData }}>
