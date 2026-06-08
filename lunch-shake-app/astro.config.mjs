@@ -7,6 +7,6 @@ export default defineConfig({
       vite: {
     plugins: [tailwindcss()],
   },
-  site: 'https://benjaminconklin.github.io',
-  base: '/LunchShakeCalc',
+  site: 'https://BenjaminConklin.github.io',
+  base: '/FortifyPowder',
 });
