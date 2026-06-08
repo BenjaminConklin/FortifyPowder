@@ -1,0 +1,136 @@
+---
+import "../styles/global.css";
+import ingredientsData from "../data/ingredients.json";
+---
+
+<div class="flex justify-center items-start">
+  <div
+    class="border-2 border-black p-4 w-full max-w-sm bg-white text-black font-sans"
+  >
+    <h2
+      class="text-4xl font-black border-b-8 border-black pb-1 leading-none tracking-tight"
+    >
+      Nutrition Facts
+    </h2>
+
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b-4 border-black text-left font-bold">
+          <th class="py-1">Serving size</th>
+          <th class="py-1 text-right"
+            ><span id="label-serving-size">400</span>g</th
+          >
+        </tr>
+        <tr class="border-b-8 border-black text-xl font-black">
+          <th class="py-1">Calories</th>
+          <th class="py-1 text-right text-4xl font-black" id="label-calories"
+            >0</th
+          >
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-gray-300 font-bold">
+          <td class="py-1">Total Fat</td>
+          <td class="py-1 text-right"><span id="label-fat">0</span>g</td>
+        </tr>
+        <tr class="border-b border-gray-300 font-bold">
+          <td class="py-1">Cholesterol</td>
+          <td class="py-1 text-right"
+            ><span id="label-cholesterol">0</span>mg</td
+          >
+        </tr>
+        <tr class="border-b border-gray-300 font-bold">
+          <td class="py-1">Sodium</td>
+          <td class="py-1 text-right"><span id="label-sodium">0</span>mg</td>
+        </tr>
+        <tr class="border-b border-gray-300 font-bold">
+          <td class="py-1">Total Carbohydrate</td>
+          <td class="py-1 text-right"><span id="label-carbs">0</span>g</td>
+        </tr>
+        <tr class="border-b border-gray-200 text-gray-600 text-xs italic">
+          <td class="py-1 pl-4">Dietary Fiber</td>
+          <td class="py-1 text-right"><span id="label-fiber">0</span>g</td>
+        </tr>
+        <tr class="border-b border-gray-200 text-gray-600 text-xs italic">
+          <td class="py-1 pl-4">Total Sugars</td>
+          <td class="py-1 text-right"><span id="label-sugars">0</span>g</td>
+        </tr>
+        <tr class="border-b border-gray-300 font-bold">
+          <td class="py-1">Protein</td>
+          <td class="py-1 text-right"><span id="label-protein">0</span>g</td>
+        </tr>
+        <tr class="border-b-4 border-black font-bold">
+          <td class="py-1">Potassium</td>
+          <td class="py-1 text-right"><span id="label-potassium">0</span>mg</td>
+        </tr>
+
+        <tr class="border-b border-gray-200 text-xs">
+          <td class="py-1 font-semibold text-gray-700">Vitamin A</td>
+          <td class="py-1 text-right text-gray-600"
+            ><span id="label-vitamin-a">0</span>g</td
+          >
+        </tr>
+        <tr class="border-b border-gray-200 text-xs">
+          <td class="py-1 font-semibold text-gray-700">Vitamin C</td>
+          <td class="py-1 text-right text-gray-600"
+            ><span id="label-vitamin-c">0</span>g</td
+          >
+        </tr>
+        <tr class="border-b border-gray-200 text-xs">
+          <td class="py-1 font-semibold text-gray-700">Vitamin D</td>
+          <td class="py-1 text-right text-gray-600"
+            ><span id="label-vitamin-d">0</span>g</td
+          >
+        </tr>
+        <tr class="border-b border-gray-200 text-xs">
+          <td class="py-1 font-semibold text-gray-700">Vitamin E</td>
+          <td class="py-1 text-right text-gray-600"
+            ><span id="label-vitamin-e">0</span>g</td
+          >
+        </tr>
+        <tr class="border-b border-gray-200 text-xs">
+          <td class="py-1 font-semibold text-gray-700">Calcium</td>
+          <td class="py-1 text-right text-gray-600"
+            ><span id="label-calcium">0</span>g</td
+          >
+        </tr>
+        <tr class="border-b border-gray-200 text-xs">
+          <td class="py-1 font-semibold text-gray-700">Iron</td>
+          <td class="py-1 text-right text-gray-600"
+            ><span id="label-iron">0</span>g</td
+          >
+        </tr>
+        <tr class="border-b-4 border-black text-xs">
+          <td class="py-1 font-semibold text-gray-700">Magnesium</td>
+          <td class="py-1 text-right text-gray-600"
+            ><span id="label-magnesium">0</span>g</td
+          >
+        </tr>
+
+        <tr class="bg-gray-50 font-bold text-xs text-indigo-950">
+          <td class="py-1.5 pl-2 rounded-l">Estimated Batch Cost</td>
+          <td class="py-1.5 pr-2 text-right rounded-r"
+            >$<span id="label-price">0.00</span></td
+          >
+        </tr>
+        <tr
+          class="bg-gray-50 border-b border-gray-300 font-bold text-xs text-indigo-950"
+        >
+          <td class="py-1.5 pl-2 pb-2 rounded-l">Market Retail Cost Est.</td>
+          <td class="py-1.5 pr-2 pb-2 text-right rounded-r"
+            >$<span id="label-cost-market">0.00</span></td
+          >
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="text-[10px] text-gray-500 pt-2 leading-tight">
+      Nutritional information calculated dynamically based on formulation
+      weights. Values are derived per gram based on ingredient composition logs.
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ ingredientsData }}>
+  window.ingredientsData = ingredientsData;
+</script>

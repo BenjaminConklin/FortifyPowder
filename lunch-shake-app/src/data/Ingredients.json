@@ -1,7 +1,6 @@
 [
   {
     "ingredient": "peanut",
-    "grams": 100.0,
     "mass_ratio": 0.125,
     "calories_per_g": 4.706,
     "carbs_per_g": 0.294,
@@ -19,12 +18,10 @@
     "iron_per_g": 0.01182,
     "potassium_per_g": 0.0,
     "sodium_per_g": 0.0,
-    "price_per_g": 0.016,
-    "cost_per_g_market": 0.02
+    "price_per_g": 0.016
   },
   {
     "ingredient": "chickpea",
-    "grams": 100.0,
     "mass_ratio": 0.125,
     "calories_per_g": 3.8,
     "carbs_per_g": 0.58,
@@ -33,12 +30,19 @@
     "fiber_per_g": 0.1,
     "fat_per_g": 0.0,
     "cholesterol_per_g": 0.0,
-    "price_per_g": 0.0061,
-    "cost_per_g_market": 0.01
+    "vitamin_a_per_g": 0.0,
+    "vitamin_e_per_g": 0.0,
+    "vitamin_d_per_g": 0.0,
+    "vitamin_c_per_g": 0.0,
+    "magnesium_per_g": 0.0,
+    "calcium_per_g": 0.0,
+    "iron_per_g": 0.0,
+    "potassium_per_g": 0.0,
+    "sodium_per_g": 0.0,
+    "price_per_g": 0.0061
   },
   {
     "ingredient": "spirulina",
-    "grams": 100.0,
     "mass_ratio": 0.125,
     "calories_per_g": 5.667,
     "carbs_per_g": 0.0,
@@ -53,12 +57,13 @@
     "vitamin_c_per_g": 0.0,
     "magnesium_per_g": 0.00107,
     "calcium_per_g": 0.0,
-    "price_per_g": 0.0354,
-    "cost_per_g_market": 0.04
+    "iron_per_g": 0.0,
+    "potassium_per_g": 0.0,
+    "sodium_per_g": 0.0,
+    "price_per_g": 0.0354
   },
   {
     "ingredient": "cocoa",
-    "grams": 100.0,
     "mass_ratio": 0.125,
     "calories_per_g": 4.0,
     "carbs_per_g": 0.55,
@@ -73,12 +78,13 @@
     "vitamin_c_per_g": 0.00015,
     "magnesium_per_g": 0.018,
     "calcium_per_g": 0.25,
-    "price_per_g": 0.0192,
-    "cost_per_g_market": 0.02
+    "iron_per_g": 0.0,
+    "potassium_per_g": 0.0,
+    "sodium_per_g": 0.0,
+    "price_per_g": 0.0192
   },
   {
     "ingredient": "oat flour",
-    "grams": 100.0,
     "mass_ratio": 0.125,
     "calories_per_g": 3.75,
     "carbs_per_g": 0.675,
@@ -91,12 +97,15 @@
     "vitamin_e_per_g": 0.00179,
     "vitamin_d_per_g": 0.00165,
     "vitamin_c_per_g": 0.00015,
-    "price_per_g": 0.0094,
-    "cost_per_g_market": 0.01
+    "magnesium_per_g": 0.0,
+    "calcium_per_g": 0.0,
+    "iron_per_g": 0.0,
+    "potassium_per_g": 0.0,
+    "sodium_per_g": 0.0,
+    "price_per_g": 0.0094
   },
   {
     "ingredient": "Date powder",
-    "grams": 100.0,
     "mass_ratio": 0.125,
     "calories_per_g": 3.125,
     "carbs_per_g": 0.75,
@@ -111,12 +120,13 @@
     "vitamin_c_per_g": 0.0,
     "magnesium_per_g": 0.00038,
     "calcium_per_g": 0.00625,
-    "price_per_g": 0.0197,
-    "cost_per_g_market": 0.02
+    "iron_per_g": 0.0,
+    "potassium_per_g": 0.0,
+    "sodium_per_g": 0.0,
+    "price_per_g": 0.0197
   },
   {
     "ingredient": "Strawberry",
-    "grams": 100.0,
     "mass_ratio": 0.125,
     "calories_per_g": 4.286,
     "carbs_per_g": 0.857,
@@ -129,17 +139,32 @@
     "vitamin_e_per_g": 0.0,
     "vitamin_d_per_g": 0.0,
     "vitamin_c_per_g": 0.0,
-    "price_per_g": 0.0522,
-    "cost_per_g_market": 0.05
+    "magnesium_per_g": 0.0,
+    "calcium_per_g": 0.0,
+    "iron_per_g": 0.0,
+    "potassium_per_g": 0.0,
+    "sodium_per_g": 0.0,
+    "price_per_g": 0.0522
   },
   {
     "ingredient": "brown sugar",
-    "grams": 100.0,
     "mass_ratio": 0.125,
     "calories_per_g": 3.75,
     "carbs_per_g": 1.0,
     "protein_per_g": 1.0,
-    "price_per_g": 0.0023,
-    "cost_per_g_market": 0.0
+    "sugar_per_g": 0.0,
+    "fiber_per_g": 0.0,
+    "fat_per_g": 0.0,
+    "cholesterol_per_g": 0.0,
+    "vitamin_a_per_g": 0.0,
+    "vitamin_e_per_g": 0.0,
+    "vitamin_d_per_g": 0.0,
+    "vitamin_c_per_g": 0.0,
+    "magnesium_per_g": 0.0,
+    "calcium_per_g": 0.0,
+    "iron_per_g": 0.0,
+    "potassium_per_g": 0.0,
+    "sodium_per_g": 0.0,
+    "price_per_g": 0.0023
   }
 ]
