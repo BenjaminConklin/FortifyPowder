@@ -8,5 +8,5 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   site: 'https://BenjaminConklin.github.io',
-  base: '/lunch-shake-app',
+  base: '/FortifyPowder',
 });
