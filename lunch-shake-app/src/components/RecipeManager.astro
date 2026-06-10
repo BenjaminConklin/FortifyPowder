@@ -1,0 +1,160 @@
+---
+// src/components/PresetManager.astro
+---
+
+<div class="bg-gray-100 p-4 rounded-xl border border-gray-200 mt-4 space-y-3">
+  <h3 class="text-sm font-semibold text-gray-700">Recipe Presets</h3>
+  
+  <div class="flex gap-2">
+    <input 
+      type="text" 
+      id="preset-name-input" 
+      placeholder="e.g., HealthyGrassSmoothie" 
+      class="flex-1 min-w-0 rounded-lg border-gray-300 bg-white px-3 py-1.5 text-sm shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+    />
+    <button 
+      id="save-preset-btn"
+      class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-lg text-sm font-medium transition shadow-sm"
+    >
+      Save
+    </button>
+  </div>
+
+  <div id="presets-list" class="flex flex-wrap gap-2 text-xs pt-1">
+    </div>
+</div>
+
+<script>
+  // Elements
+  const presetInput = document.getElementById('preset-name-input') as HTMLInputElement;
+  const saveBtn = document.getElementById('save-preset-btn');
+  const presetsList = document.getElementById('presets-list');
+  
+  // Selectors from your calculator setup
+  const totalSlider = document.getElementById("total-weight-slider") as HTMLInputElement;
+  const ingredientSliders = document.querySelectorAll(".ingredient-slider") as NodeListOf<HTMLInputElement>;
+
+  const STORAGE_KEY = 'lunchshake_presets';
+
+  // Helper to get presets array safely from localStorage
+  function getPresets() {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : {};
+  }
+
+  // Forces the layout calculators to refresh after modifying the values via JS
+  function triggerRecalculation() {
+    // Dispatch an 'input' event to the total weight slider to wake up calculateNutrition()
+    if (totalSlider) {
+      totalSlider.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  }
+
+  // Render the current saved options
+  function renderPresets() {
+    if (!presetsList) return;
+    const presets = getPresets();
+    presetsList.innerHTML = '';
+
+    const keys = Object.keys(presets);
+    if (keys.length === 0) {
+      presetsList.innerHTML = `<span class="text-gray-400 italic">No saved presets yet.</span>`;
+      return;
+    }
+
+    keys.forEach(name => {
+      // Wrapper group
+      const wrapper = document.createElement('div');
+      wrapper.className = 'inline-flex items-center bg-white border border-gray-300 rounded-full pl-3 pr-1 py-1 gap-1 shadow-sm';
+
+      // Load Button text
+      const loadBtn = document.createElement('button');
+      loadBtn.className = 'font-medium text-gray-700 hover:text-indigo-600 capitalize';
+      loadBtn.textContent = name;
+      loadBtn.onclick = () => loadPreset(name);
+
+      // Delete Button icon
+      const delBtn = document.createElement('button');
+      delBtn.className = 'text-gray-400 hover:text-red-500 rounded-full p-0.5 hover:bg-gray-100 transition';
+      delBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      `;
+      delBtn.onclick = () => deletePreset(name);
+
+      wrapper.appendChild(loadBtn);
+      wrapper.appendChild(delBtn);
+      presetsList.appendChild(wrapper);
+    });
+  }
+
+  // Capture slide parameters and save
+  function saveCurrentAsPreset() {
+    if (!presetInput || !presetInput.value.trim()) return;
+    const name = presetInput.value.trim().toLowerCase();
+
+    const presetData: Record<string, string> = {
+      totalWeight: totalSlider?.value || '100'
+    };
+
+    // Grab positions mapped to their ingredient identity
+    ingredientSliders.forEach(slider => {
+      const nameAttr = slider.getAttribute('data-ingredient');
+      if (nameAttr) {
+        presetData[nameAttr] = slider.value;
+      }
+    });
+
+    const presets = getPresets();
+    presets[name] = presetData;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(presets));
+
+    presetInput.value = '';
+    renderPresets();
+  }
+
+  // Distribute saved properties back to DOM inputs
+  function loadPreset(name: string) {
+    const presets = getPresets();
+    const targetPreset = presets[name];
+    if (!targetPreset) return;
+
+    // Restore Total Weight
+    if (totalSlider && targetPreset.totalWeight) {
+      totalSlider.value = targetPreset.totalWeight;
+    }
+
+    // Restore Ingredient Nodes
+    ingredientSliders.forEach(slider => {
+      const nameAttr = slider.getAttribute('data-ingredient');
+      if (nameAttr && targetPreset[nameAttr] !== undefined) {
+        slider.value = targetPreset[nameAttr];
+      }
+    });
+
+    // Fire event to re-render the nutrition label calculations
+    triggerRecalculation();
+  }
+
+  function deletePreset(name: string) {
+    const presets = getPresets();
+    delete presets[name];
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(presets));
+    renderPresets();
+  }
+
+  // Setup listeners
+  if (saveBtn) {
+    saveBtn.addEventListener('click', saveCurrentAsPreset);
+  }
+  
+  if (presetInput) {
+    presetInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') saveCurrentAsPreset();
+    });
+  }
+
+  // Initialize view on load
+  renderPresets();
+</script>

@@ -1,0 +1,82 @@
+---
+// src/components/HoverData.astro
+interface Props {
+  data: any;
+}
+const { data } = Astro.props;
+---
+
+<span 
+  class="ingredient-hover-trigger cursor-help border-b border-dashed border-indigo-400" 
+  data-nutrition={JSON.stringify(data)}
+>
+  <slot />
+</span>
+
+<div id="global-tooltip" class="fixed hidden bg-neutral-900 text-white p-4 rounded-xl shadow-2xl z-50 text-xs w-48 pointer-events-none transition-opacity duration-150 opacity-0">
+  <h4 id="tooltip-title" class="font-bold text-sm capitalize mb-1 text-amber-400"></h4>
+  <hr class="border-neutral-700 my-2" />
+  <ul class="space-y-1">
+    <li><strong>Calories:</strong> <span id="tooltip-cal"></span> kcal</li>
+    <li><strong>Carbs:</strong> <span id="tooltip-carbs"></span>g</li>
+    <li><strong>Sugar:</strong> <span id="tooltip-sugar"></span>g</li>
+    <li><strong>Protein:</strong> <span id="tooltip-protein"></span>g</li>
+    <li><strong>Fat:</strong> <span id="tooltip-fat"></span>g</li>
+    <li><strong>Price per gram:</strong> $<span id="tooltip-price"></span></li>
+  </ul>
+</div>
+
+<script>
+  const tooltip = document.getElementById('global-tooltip');
+  const title = document.getElementById('tooltip-title');
+  const cal = document.getElementById('tooltip-cal');
+  const carbs = document.getElementById('tooltip-carbs');
+  const sugar = document.getElementById('tooltip-sugar');
+  const protein = document.getElementById('tooltip-protein');
+  const fat = document.getElementById('tooltip-fat');
+  const price = document.getElementById('tooltip-price');
+
+  if (tooltip) {
+    // Watch for mouse movement across the whole screen
+    document.body.addEventListener('mouseover', (e) => {
+      const trigger = (e.target as HTMLElement).closest('.ingredient-hover-trigger');
+      
+      if (trigger) {
+        const rawData = trigger.getAttribute('data-nutrition');
+        if (!rawData) return;
+        
+        const data = JSON.parse(rawData);
+        
+        // Populate the data
+        if (title) title.textContent = data.ingredient;
+        if (cal) cal.textContent = data.calories_per_g;
+        if (carbs) carbs.textContent = data.carbs_per_g;
+        if (sugar) sugar.textContent = data.sugar_per_g;
+        if (protein) protein.textContent = data.protein_per_g;
+        if (fat) fat.textContent = data.fat_per_g;
+        if (price) price.textContent = Number(data.price_per_g).toFixed(4);
+
+        // Show it
+        tooltip.classList.remove('hidden');
+        setTimeout(() => tooltip.classList.add('opacity-150'), 10);
+      }
+    });
+
+    document.body.addEventListener('mousemove', (e) => {
+      if (!tooltip.classList.contains('hidden')) {
+        // Track the mouse cursor dynamically
+        // Offset by +15px so it doesn't clip directly under the pointer
+        tooltip.style.left = `${e.clientX + 15}px`;
+        tooltip.style.top = `${e.clientY + 15}px`;
+      }
+    });
+
+    document.body.addEventListener('mouseout', (e) => {
+      const trigger = (e.target as HTMLElement).closest('.ingredient-hover-trigger');
+      if (trigger) {
+        tooltip.classList.remove('opacity-150');
+        tooltip.classList.add('hidden');
+      }
+    });
+  }
+</script>

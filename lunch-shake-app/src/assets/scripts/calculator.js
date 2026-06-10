@@ -39,8 +39,7 @@ function calculateNutrition() {
     iron: 0,
     potassium: 0,
     sodium: 0,
-    price: 0,
-    cost_market: 0
+    price: 0
   };
 
   // Process ingredient math

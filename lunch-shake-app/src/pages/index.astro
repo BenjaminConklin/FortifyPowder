@@ -5,6 +5,9 @@ import "../styles/global.css";
 // 1. Import your JSON data directly from your project files
 import ingredientsData from "../data/ingredients.json";
 import NutritionFactsLabel from "../assets/NutritionFactsLabel.astro";
+
+import HoverData from "../components/HoverData.astro";
+import RecipeManager from "../components/RecipeManager.astro";
 ---
 
 <Layout title="Lunch Shake Calculator">
@@ -41,7 +44,7 @@ import NutritionFactsLabel from "../assets/NutritionFactsLabel.astro";
           </div>
 
           <div
-            class="space-y-4 md:max-h-125 md:inset-shadow-sm/40 md:p-2 rounded-xl overflow-y-auto pr-2"
+            class="space-y-4 md:max-h-125 md:inset-shadow-sm/40 md:p-2 rounded-xl pr-2 overflow-y-auto"
           >
             <h2 class="text-lg font-semibold text-gray-700 border-b pb-2">
               Recipe Selector
@@ -51,7 +54,9 @@ import NutritionFactsLabel from "../assets/NutritionFactsLabel.astro";
               ingredientsData.map((item) => (
                 <div class="border-b border-gray-100 pb-3">
                   <div class="flex justify-between text-sm font-medium text-gray-700 capitalize">
-                    <span>{item.ingredient}</span>
+                    <HoverData data={item}>
+                      <span>{item.ingredient}</span>
+                    </HoverData>
                     <span>
                       <span
                         data-actual={item.ingredient}
@@ -62,6 +67,7 @@ import NutritionFactsLabel from "../assets/NutritionFactsLabel.astro";
                       g
                     </span>
                   </div>
+
                   <input
                     type="range"
                     min="0"
@@ -73,6 +79,7 @@ import NutritionFactsLabel from "../assets/NutritionFactsLabel.astro";
                 </div>
               ))
             }
+            <RecipeManager />
           </div>
         </div>
 
